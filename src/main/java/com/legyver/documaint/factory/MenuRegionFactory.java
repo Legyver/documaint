@@ -31,7 +31,7 @@ public class MenuRegionFactory extends TopRegionFactory {
 				),
 				new CenterOptions(new TextFieldFactory(false)),
 				new RightMenuOptions(
-						new MenuFactory("Help", new AboutMenuItemFactory("About", MenuRegionFactory::centerContentReference, mainApplication.getAutodocVersionInfo().getAboutPageOptions()))
+						new MenuFactory("Help", new AboutMenuItemFactory("About", MenuRegionFactory::centerContentReference, mainApplication.getDocumaintVersionInfo().getAboutPageOptions()))
 				));
 	}
 

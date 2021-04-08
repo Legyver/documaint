@@ -92,7 +92,7 @@ public class MainApplication extends Application {
 		return bindingFactory;
 	}
 
-	public DocumaintVersionInfo getAutodocVersionInfo() {
+	public DocumaintVersionInfo getDocumaintVersionInfo() {
 		return documaintVersionInfo;
 	}
 
