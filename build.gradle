@@ -1,3 +1,5 @@
+import java.time.LocalDate
+
 plugins {
     id 'java'
     id 'application'
@@ -49,4 +51,26 @@ run {
 
 java {
     modularity.inferModulePath = true
+}
+
+def incrementBuildDate = tasks.register('incrementBuildDate') {
+    doFirst {
+        Properties properties = new Properties();
+        File file = new File('src/main/resources/buildlabel.properties');
+        file.withDataInputStream {input ->
+            properties.load(input)
+        }
+        LocalDate today = LocalDate.now();
+
+        properties.setProperty("build.date.day", String.valueOf(today.getDayOfMonth()));
+        properties.setProperty("build.date.month", today.getMonth().name());
+        properties.setProperty("build.date.year", String.valueOf(today.getYear()));
+        file.withDataOutputStream {out ->
+            properties.store(out, "generated build information")
+        }
+    }
+}
+
+compileJava.configure {
+    dependsOn incrementBuildDate
 }
