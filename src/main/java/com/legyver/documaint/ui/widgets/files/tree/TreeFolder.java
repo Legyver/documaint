@@ -24,6 +24,7 @@ public class TreeFolder extends FileTreeItem {
 			graphic.setSvgIcon(FontAwesomeFreeSolidIcons.FOLDER);
 			graphic.setSvgIconLibraryPrefix(FontAwesomeIconFonts.FONTAWESOME_FREE_SOLID);
 			graphic.svgIconPaintProperty().bind(color);
+			graphic.setSvgIconSize(16);
 			color.set(Paint.valueOf("#e7c9a9"));
 		}
 	}

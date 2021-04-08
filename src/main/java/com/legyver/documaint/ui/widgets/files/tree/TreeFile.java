@@ -27,7 +27,8 @@ public class TreeFile extends FileTreeItem {
 		graphic.setSvgIcon(FontAwesomeFreeSolidIcons.CODE);
 		graphic.setSvgIconLibraryPrefix(FontAwesomeIconFonts.FONTAWESOME_FREE_SOLID);
 		graphic.svgIconPaintProperty().bind(color);
-		color.set(Paint.valueOf( "#4287f5"));
+		graphic.setSvgIconSize(18);
+		color.set(Paint.valueOf( "#3a73cf"));
 	}
 
 	@Override

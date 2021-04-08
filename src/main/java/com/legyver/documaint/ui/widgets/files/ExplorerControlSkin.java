@@ -20,7 +20,7 @@ public class ExplorerControlSkin extends SkinBase<ExplorerControl> {
 	public ExplorerControlSkin(ExplorerControl explorerControl) {
 		super(explorerControl);
 		this.hbox = new HBox();
-		hbox.setPadding(new Insets(3));
+		hbox.setPadding(new Insets(10));
 		addIcon(FontAwesomeFreeSolidIcons.SYNC_ALT, event -> {
 			explorerControl.refreshFileExplorer();
 		});
@@ -33,7 +33,7 @@ public class ExplorerControlSkin extends SkinBase<ExplorerControl> {
 		svgControl.setSvgIcon(icon);
 		svgControl.setSvgIconLibraryPrefix(FontAwesomeIconFonts.FONTAWESOME_FREE_SOLID);
 		svgControl.setSvgIconPaint(Paint.valueOf("#68b1e3"));
-		svgControl.setSvgIconSize(18);
+		svgControl.setSvgIconSize(16);
 		hbox.getChildren().add(svgControl);
 
 		svgControl.setOnMouseClicked(onClick);
