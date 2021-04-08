@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'com.legyver'
+version '1.0-SNAPSHOT'
+
+ext {
+    fenxlibVersion = "2.0.0.0-rc2"
+    log4jVersion = "2.13.3"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    //ui
+    compile group: 'com.legyver', name: 'fenxlib.extensions.tuktukfx', version: fenxlibVersion
+    compile group: 'com.legyver', name: 'fenxlib.widgets.about', version: fenxlibVersion
+    compile group: 'com.legyver', name: 'fenxlib.controls.svg', version: fenxlibVersion
+    compile group: 'com.legyver', name: 'fenxlib.icons.fa', version: fenxlibVersion
+
+    //File utils
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+
+    //logging
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: log4jVersion
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: log4jVersion
+}
+
+test {
+    useJUnitPlatform()
+}
+
+application {
+    mainModule = 'com.legyver.autodoc' // name defined in module-info.java
+    mainClass = 'com.legyver.autodoc.MainApplication'
+}
+
+run {
+    //workaround for https://github.com/sshahine/JFoenix/issues/955
+    jvmArgs = [
+            '--add-opens=java.base/java.lang.reflect=com.jfoenix'
+    ]
+}
+
+java {
+    modularity.inferModulePath = true
+}

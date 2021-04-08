@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration name="defaultConfiguration" status="warn" strict="true" monitorInterval="270">
+    <properties>
+        <property name="patternlayout">%d{dd/MM/yyyy HH:mm:ss} %5p %c{1}:%L - %m%n</property>
+        <property name="filename">${sys:documaint.home.logging}/application.log</property>
+        <property name="filenamePattern">${sys:documaint.home.logging}/application-%d{yyyy-MM-dd}.log.gz</property>
+    </properties>
+    <appenders>
+        <appender name="Console" type="Console" target="SYSTEM_OUT">
+            <layout type="PatternLayout" pattern="${patternlayout}" />
+        </appender>
+
+        <RollingFile name="File"
+                     fileName="${filename}"
+                     filePattern="${filenamePattern}"
+                     ignoreExceptions="false">
+            <PatternLayout pattern="${patternlayout}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy>
+<!--                <Delete basePath="${env:MY_APP_LOG_DIR}" maxDepth="2">-->
+<!--                    <IfFileName glob="application*.log.gz" />-->
+<!--                    <IfLastModified age="7d" />-->
+<!--                </Delete>-->
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <appender name="AsyncFile" type="async" blocking="true" bufferSize="128">
+            <appender-ref ref="File" />
+        </appender>
+    </appenders>
+    <Loggers>
+        <root level="ERROR">
+            <appender-ref ref="AsyncFile" />
+        </root>
+        <Logger name="com.legyver" level="INFO">
+            <appender-ref ref="Console" />
+        </Logger>
+        <Logger name="com.legyver.documaint" level="TRACE">
+            <appender-ref ref="AsyncFile" />
+        </Logger>
+    </Loggers>
+</configuration>
